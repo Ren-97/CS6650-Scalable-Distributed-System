@@ -1,0 +1,14 @@
+# Terraform files
+terraform.tfvars
+*.tfvars
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Keys
+*.pem
+*.ppk
+
+# System
+.DS_Store
