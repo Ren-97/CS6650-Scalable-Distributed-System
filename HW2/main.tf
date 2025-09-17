@@ -17,11 +17,16 @@ provider "aws" {
 
 # Your ec2 instance
 resource "aws_instance" "demo-instance" {
-  ami                    = data.aws_ami.al2023.id
+  ami                    = data.aws_ami.al2023.id //docker included
   instance_type          = "t2.micro"
   iam_instance_profile   = "LabInstanceProfile"
   vpc_security_group_ids = [aws_security_group.ssh.id]
   key_name               = var.ssh_key_name
+
+  user_data = <<-EOF
+    #!/bin/bash
+    yum install git -y
+  EOF
 
   tags = {
     Name = "terraform-created-instance-:)"
